@@ -1,0 +1,8 @@
+<% if @is_like %>
+  $('#like-post').addClass('glyphicon-heart-press');
+  $('#like-name').html('Dislike');
+<% else %>
+  $('#like-post').removeClass('glyphicon-heart-press');
+  $('#like-name').html('Like');
+<% end %>
+$('#like-size').html('<%= @post.likes.size %>');

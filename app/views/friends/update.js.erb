@@ -1,0 +1,6 @@
+<% if @is_post %>
+  $('#button-friend').html('<%= j render "posts/button_friend" %>');
+<% else %>
+  $('#friend-request').html('<%= j render "profiles/friend_request" %>');
+  $('#list-waiting').html('<%= j render "profiles/list_waiting" %>');
+<% end %>

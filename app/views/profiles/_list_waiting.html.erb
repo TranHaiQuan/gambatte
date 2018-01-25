@@ -1,0 +1,27 @@
+<% if @list_waiting.size == 0 %>
+  <h3 class="text-center"><i>No friend request</i></h3>
+<% else %>
+  <% @list_waiting.each do |other| %>
+    <div class="row">
+      <div class="row">
+        <div class="col-md-1">
+          <%= image_tag friend(other.friend_id).image, class: "img-circle", width: "60",
+            height: "60" %>
+        </div>
+        <div class="col-md-11">
+          <div class="row row-waiting">
+            <b><%= link_to friend(other.friend_id).name, profile_path(other.friend_id) %></b> sent request
+            <%= time_ago_in_words(friend(other.friend_id).created_at) %> ago
+          </div>
+        </div>
+        <div class="row">
+          <%= link_to "Delete request", friend_path(other), method: :delete, remote: true,
+            data: {confirm: "Are you sure delete request add friend to #{other.user.name}"},
+              class: "btn btn-danger" %>
+        </div>
+      </div>
+
+    </div>
+    <hr>
+  <% end %>
+<% end %>

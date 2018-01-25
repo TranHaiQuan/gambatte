@@ -1,0 +1,94 @@
+<br>
+<div class="row">
+  <div class="col-md-2">
+    <%= image_tag @user.image, class: "img-circle", width: "150", height: "150" %>
+    <br>
+  </div>
+  <div class="col-md-10">
+    <h2><b><%= @user.name %>&nbsp;&nbsp;&nbsp;
+    <% if current_user %>
+      <% if current_user.id == @user.id %>
+        <%= link_to edit_user_registration_path, class: "edit-user" do %>
+          <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit profile"></span>
+        <% end %>
+      <% end %>
+    <% end %>
+    </b></h2>
+    <h3><%= @user.email %></h3><br>
+    <%# if current_user %>
+      <%# if current_user.id != @user.id %>
+        <%#= %>
+      <%# end %>
+    <%# end %>
+    <%#%>
+  </div>
+</div>
+<hr>
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#my-post" class="btn btn-primary" aria-controls="my-post" role="tab" data-toggle="tab"><b>My post</b></a></li>
+    <% if current_user.id == @user.id %>
+      <li role="presentation"><a href="#friend-request" class="btn btn-primary" aria-controls="friend-request" role="tab" data-toggle="tab"><b>Friend requset</b></a></li>
+      <li role="presentation"><a href="#list-waiting" class="btn btn-primary" aria-controls="list-waiting" role="tab" data-toggle="tab"><b>List waiting</b></a></li>
+      <li role="presentation"><a href="#list-friend" class="btn btn-primary" aria-controls="list-friend" role="tab" data-toggle="tab"><b>List Friend</b></a></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="my-post">
+      <br>
+      <div class="row">
+        <% if @posts.size == 0 %>
+          <h3 class="text-center"><i>No post</i></h3>
+          <% if current_user %>
+            <% if current_user.id == @user.id %>
+              <%= link_to "Create post", new_post_path, class: "text-center btn btn-primary" %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% @posts.each do |post| %>
+            <div class="row">
+              <div class="col-md-1">
+                <div class="avatar">
+                  <%= image_tag post.user.image, class: "img-circle", width: "60", height: "60" %>
+                </div>
+              </div>
+              <div class="col-md-11">
+                <div class="header-post">
+                  Created at <%= time_ago_in_words post.created_at %> ago
+                </div>
+                <div class="post-title">
+                  <h3 style="margin-top: 10px;"><%= link_to post.title, post_path(post) %></h3>
+                </div>
+                <div class="row">
+                  <div class="col-md-1">
+                    <span class="glyphicon glyphicon-heart"></span> <span id="comment-size"><%= post.likes.size %></span>
+                  </div>
+
+                  <div class="col-md-1">
+                    <span class="glyphicon glyphicon-comment"></span> <span id="comment-size"><%= post.comments.size %></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+          <%= paginate @posts %>
+        <% end %>
+      </div>
+    </div>
+    <% if current_user.id == @user.id %>
+      <div role="tabpanel" class="tab-pane" id="friend-request">
+        <%= render "friend_request" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="list-waiting">
+        <br>
+        <%= render "list_waiting" %>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="list-friend">
+        <br>
+        ...
+      </div>
+    <% end %>
+  </div>
+
+</div>
