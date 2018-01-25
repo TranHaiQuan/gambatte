@@ -1,0 +1,37 @@
+<% if Friend.status_of(current_user.id, @post.user.id).first.nil? && Friend.status_of(@post.user.id, current_user.id).first.nil? %>
+  <%= button_to friends_path(@post.id), remote: true, class: "btn btn-primary", id: "Add-friend" do %>
+    <span id="add-request">Add friend</span>
+  <% end %>
+  <%= console %>
+<% else %>
+  <% if Friend.status_of(current_user.id, @post.user.id).first.present? && Friend.status_of(current_user.id, @post.user.id).first.status == "Sent" %>
+    <%= button_to "", remote: true, class: "btn btn-primary", id: "sent-request", data: {toggle: "tooltip"}, title: "Sent request" do %>
+      <span id="sent-request">Sent req</span>
+    <% end %>
+  <% end %>
+
+  <%# 1 trong 2 nguoi dong y => can button xoa ban be %>
+  <% if Friend.status_of(@post.user.id, current_user.id).first.present? && Friend.status_of(@post.user.id, current_user.id).first.status == "Accept" %>
+    <%= button_to [@post, Friend.status_of(@post.user.id, current_user.id).first.id], method: :delete, remote: true, data: {confirm: "Delete request?"}, class: "btn btn-primary", id: "unfriend" do %>
+      <span id="unfriend-request">Unfriend</span>
+    <% end %>
+  <% end %>
+
+  <% if Friend.status_of(current_user.id, @post.user.id).first.present? && Friend.status_of(current_user.id, @post.user.id).first.status == "Accept" %>
+    <%= button_to [@post, Friend.status_of(current_user.id, @post.user.id).first.id], method: :delete, remote: true, data: {confirm: "Delete request?"}, class: "btn btn-primary", id: "unfriend" do %>
+      <span id="unfriend-request">Unfriend</span>
+    <% end %>
+  <% end %>
+
+  <%# Neu nguoi kia gui yeu cau cho minh %>
+  <% if Friend.status_of(@post.user.id, current_user.id).first.present? && Friend.status_of(@post.user.id, current_user.id).first.status == "Sent" %>
+    <%= form_for Friend.status_of(@post.user.id, current_user.id).first, remote: true do |f| %>
+      <%= f.hidden_field :status, value: "Accept" %>
+      <%= f.submit "Confirm", class: "btn btn-primary" %>
+    <% end %>
+    <%= button_to friend_path(Friend.status_of(@post.user.id, current_user.id).first.id), class: "btn btn-primary", id: "confirm-request" , method: :delete, remote: true, data: {confirm: "Delete request?"} do %>
+      <span id="delete-request">Delete</span>
+    <% end %>
+  <% end %>
+  <%= console %>
+<% end%>

@@ -1,0 +1,4 @@
+$('#all-comment').html('<%= j render "posts/comment" %>')
+$('#content-comment').val('');
+$('#paginate').html('<%= j paginate(@comments, remote: true).to_s %>')
+$('#comment-size').html('<%= @comments.size %>')

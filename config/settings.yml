@@ -1,0 +1,5 @@
+post:
+  all_post: 5
+  comment: 5
+user:
+  friend: 10
