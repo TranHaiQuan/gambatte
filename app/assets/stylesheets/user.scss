@@ -1,0 +1,28 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'color';
+.btn.btn-outlined.btn-success {
+  margin-top: 10px;
+  background: none;
+  border-radius: 0;
+  border: 3px solid $fern-color;
+  color: $fern-color;
+  width: 100%;
+  &:hover, &:active {
+    color: $white;
+    background: $apple-color;
+  }
+}
+
+.btn.btn-outlined.btn-primary {
+  margin-top: 10px;
+  border-radius: 0;
+  background: none;
+  border: 3px solid $electric-violet-color;
+  color: $electric-violet-color;
+  width: 100%;
+  &:hover, &:active {
+    color: $white;
+    background: $electric-light-color;
+  }
+}

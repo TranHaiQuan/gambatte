@@ -1,0 +1,7 @@
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.label :content %>
+  <%= f.cktext_area :content %>
+  <%= f.submit class: "btn btn-outlined btn-success" %>
+<% end %>

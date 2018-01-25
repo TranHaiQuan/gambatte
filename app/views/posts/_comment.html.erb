@@ -1,0 +1,32 @@
+<% @comments.each do |comment| %>
+  <div id="new-comment"></div>
+  <div class="row" id="comment_<%= comment.id %>">
+    <div class="col-md-1 col-md-offset-1">
+      <%= image_tag comment.user.image, class: "img-circle", width: "50px", heigh: "50px" %>
+    </div>
+    <div class="col-md-10 well">
+      <div class="times">
+        <div class="row">
+          <div class="col-md-10">
+            <b><%= comment.user.name %></b> commented on <%= time_ago_in_words comment.created_at %> ago
+          </div>
+          <% if current_user.id == comment.user.id %>
+            <div class="col-md-2 two-icon">
+              <%= link_to edit_comment_path(comment.id), class: "icon-comment", remote: true do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>&nbsp;
+              <%= link_to comment_path(comment.id), method: :delete, class: "icon-comment",data: {confirm: "Are you sure you want to remove this comment?"}, remote: true do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <br>
+      <div id="ct-comment-<%= comment.id %>">
+        <%= comment.content %>
+      </div>
+    </div>
+  </div>
+  <hr>
+<% end %>

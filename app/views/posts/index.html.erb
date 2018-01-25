@@ -1,0 +1,20 @@
+<% provide :title, "New post"%>
+<div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-1">
+      <div class="avatar">
+        <%= image_tag post.user.image, class: "img-circle", width: "50", height: "50" %>
+      </div>
+    </div>
+    <div class="col-md-11"></div>
+    <div class="header-post">
+      <%= link_to post.user.name, "#" %>
+      <%= time_ago_in_words post.created_at %> ago
+    </div>
+    <br>
+    <div class="post-title">
+      <%= link_to post.title, post_path(post) %>
+    </div>
+    <hr>
+  <% end %>
+</div>

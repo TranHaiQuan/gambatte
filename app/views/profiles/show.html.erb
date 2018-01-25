@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-2">
+    <%= image_tag @user.image, class: "img-circle", width: "150", height: "150" %>
+    <br>
+  </div>
+  <div class="col-md-10">
+    <h2><b><%= @user.name %>&nbsp;&nbsp;&nbsp;
+      <%= link_to edit_user_registration_path, class: "edit-user" do %>
+        <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" title="Edit profile"></span>
+      <% end %>
+    </b></h2>
+    <h3><%= @user.email %></h3><br>
+  </div>
+</div>
+<hr>
+<h3><span class="glyphicon glyphicon-th-list"></span> My post</h3>
+<hr>
+<div class="row">
+  <% if @posts.size == 0 %>
+    <h3 class="text-center"><i>No post</i></h3>
+    <% if current_user.id == @user.id %>
+      <%= link_to "Create post", new_post_path, class: "btn btn-primary" %>
+    <% end %>
+  <% else %>
+    <% @posts.each do |post| %>
+      <div class="row">
+        <div class="col-md-1">
+          <div class="avatar">
+            <%= image_tag post.user.image, class: "img-circle", width: "50", height: "50" %>
+          </div>
+        </div>
+        <div class="col-md-11">
+          <div class="header-post">
+            <%= link_to post.user.name, "#" %>
+            <%= time_ago_in_words post.created_at %> ago
+          </div>
+          <br>
+          <div class="post-title">
+            <h4><%= link_to post.title, post_path(post) %></h4>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <span class="glyphicon glyphicon-heart"></span> <span id="comment-size"><%= post.likes.size %></span>
+            </div>
+
+            <div class="col-md-1">
+              <span class="glyphicon glyphicon-comment"></span> <span id="comment-size"><%= post.comments.size %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    <%= paginate @posts %>
+  <% end %>
+</div>
+

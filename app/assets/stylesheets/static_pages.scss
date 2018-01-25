@@ -1,0 +1,23 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'color';
+// navbar
+.navbar-inverse.navbar-head {
+  border-radius: 0px;
+  background-color: $san-marino-color;
+  ul li a {
+    color: $white;
+    font-size: 17px;
+    &:hover {
+      background-color: $blue-zodiac-color;
+    }
+  }
+  a.navbar-brand {
+    font-size: 20px;
+  }
+  a.avatar-header{
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+}
+

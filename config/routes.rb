@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  mount Ckeditor::Engine => '/ckeditor'
+  devise_for :users, controllers: {registrations: "registrations"}
+  root "posts#index"
+  resources :posts
+  get "list_post", to: "posts#list_post"
+  resources :comments do
+    get "delete"
+  end
+  resources :likes
+  resources :friends
+  resources :profiles, only: [:show]
 end
