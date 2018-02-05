@@ -16,4 +16,5 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require user
+//= require_tree ./channels
 //= require_tree .

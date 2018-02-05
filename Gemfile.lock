@@ -398,6 +398,7 @@ GEM
       json (>= 1.8)
       nokogiri (~> 1.5)
       trollop (~> 2.1)
+    redis (4.0.1)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -496,6 +497,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   ransack
   ratyrate
+  redis
   sass-rails (~> 5.0)
   selenium-webdriver
   social-share-button
