@@ -31,6 +31,8 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier", ">= 1.3.0"
 
 group :development, :test do
+  gem "rspec-rails", "~> 3.0"
+  gem "factory_bot_rails"
   gem "sqlite3"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"
