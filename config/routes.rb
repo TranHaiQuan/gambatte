@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "search", to: 'searchs#search'
+
   mount ActionCable.server => "/cable"
   mount Ckeditor::Engine => "/ckeditor"
   resources :messages

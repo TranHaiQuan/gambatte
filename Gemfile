@@ -29,7 +29,8 @@ gem "social-share-button"
 gem "turbolinks", "~> 5"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier", ">= 1.3.0"
-
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
   gem "factory_bot_rails"
