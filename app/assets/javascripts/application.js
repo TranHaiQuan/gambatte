@@ -13,8 +13,10 @@
 //= require ckeditor/init
 //= require jquery
 //= require bootstrap
-//= require jquery_ujs
+//= require angular
 //= require bootstrap-sprockets
 //= require user
+//= require post
+//= require typeahead
 //= require_tree ./channels
 //= require_tree .

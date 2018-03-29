@@ -7,10 +7,12 @@
     <%= stylesheet_link_tag "application", media: "all",
     "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" %>
+    <%= javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.js" %>
   </head>
-  <body>
+  <body ng-app="gambatte">
     <%= render "layouts/header" %>
-    <div class="container">
+    <div class="container" ng-controller="PostCtrl">
       <% flash.each do |messages_type, messages| %>
         <div class="alert alert-<%= messages_type %>">
           <%= messages %>

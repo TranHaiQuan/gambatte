@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root "posts#index"
   resources :posts do
     resources :friends
+    get :autocomplete
   end
   get "list_post", to: "posts#list_post"
   resources :comments do
