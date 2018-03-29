@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   # before_action :authenticate_user!, expect: [:show, ]
   before_action :post_obj, only: [:edit, :destroy]
   def index
-    @posts = Post.all_post.page(params[:page]).per Settings.post.all_post
+    if params[:query].present?
+      @posts = Post.search params[:query], suggest: true
+    else
+      @posts = Post.all_post.page(params[:page]).per Settings.post.all_post
+    end
   end
 
   def new
@@ -45,6 +49,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def autocomplete
+    render json: Post.search(params[:query], {
+      fields: ["title^5", "content"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+    }).map(&:title)
+  end
   private
 
   def post_obj

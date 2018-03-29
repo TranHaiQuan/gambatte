@@ -4,6 +4,12 @@
   <% if @posts.size == 0 %>
     <h4 class="text-center"><i>No post</i></h4>
   <% else %>
+    <div>
+      <% if @posts.suggestions.present? %>
+        <%= @posts.suggestions %>
+      <% end %>
+    </div>
+    <h3><%= @posts.size %> posts</h3>
     <% @posts.each do |post| %>
       <div class="row">
         <div class="col-md-1">
@@ -32,5 +38,6 @@
       </div>
       <hr>
     <% end %>
+    <%= paginate @posts %>
   <% end %>
 </div>
