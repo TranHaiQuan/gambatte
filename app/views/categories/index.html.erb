@@ -1,0 +1,9 @@
+<h1>Categories#index</h1>
+<div ng-controller="CategoriesCtrl">
+	<div>{{data}}</div>
+	<div ng-repeat="entry in entries">
+		<my-directive title="{{entry.name}}">Name: </my-directive>
+	</div>
+</div>
+
+

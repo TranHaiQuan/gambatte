@@ -13,8 +13,27 @@
 //= require ckeditor/init
 //= require jquery
 //= require bootstrap
-//= require jquery_ujs
+//= require angular
 //= require bootstrap-sprockets
 //= require user
-//= require_tree ./channels
-//= require_tree .
+//= require categories
+
+(function(){
+	var myApp = angular.module('gambatte', []);
+
+	myApp.controller('CategoriesCtrl', function ($scope, $http) {
+	  $http.get("/posts").then(function(response){
+	  	$scope.data = response.data;
+	  });
+	});
+
+	myApp.directive('myDirective', function(){
+		return {
+			transclude: true,
+			template: '<span ng-transclude></span>',
+			link: function(scope, element, attr){
+				element.append("<strong>"+attr.title+"</strong>");
+			}
+		};
+	});
+}());

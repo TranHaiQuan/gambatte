@@ -2,10 +2,12 @@ class PostsController < ApplicationController
   # before_action :authenticate_user!, expect: [:show, ]
   before_action :post_obj, only: [:edit, :destroy]
   def index
-    if params[:query].present?
-      @posts = Post.search params[:query], suggest: true
+    @search = params[:query]
+    if @search.present?
+      @posts = Post.search params[:query]
+      byebug
     else
-      @posts = Post.all_post.page(params[:page]).per Settings.post.all_post
+      @posts = Post.all_post.page(params[:page]).per(Settings.post.all_post)
     end
   end
 

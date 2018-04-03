@@ -5,9 +5,10 @@
     <h4 class="text-center"><i>No post</i></h4>
   <% else %>
     <div>
-      <% if @posts.suggestions.present? %>
-        <%= @posts.suggestions %>
-      <% end %>
+      <%# if @search.present? && @posts.suggestions.present? %>
+        <%#= @posts.suggestions %>
+        <%#= console %>
+      <%# end %>
     </div>
     <h3><%= @posts.size %> posts</h3>
     <% @posts.each do |post| %>

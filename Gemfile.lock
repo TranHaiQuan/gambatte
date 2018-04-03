@@ -41,6 +41,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    angularjs-rails (1.6.8)
     arel (8.0.0)
     autoprefixer-rails (7.2.5)
       execjs
@@ -484,6 +485,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   bcrypt (= 3.1.11)
   bootstrap-datepicker-rails
   bootstrap-kaminari-views
