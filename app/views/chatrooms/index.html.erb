@@ -1,0 +1,13 @@
+<div class="row">
+  <%= link_to "new chatroom", new_chatroom_path, class: "btn btn-primary" %>
+<hr>
+<div class="row">
+  <% if @chatrooms.size == 0 %>
+    <h4><i>No chatroom</i></h4>
+  <% else %>
+    <% @chatrooms.each do |chatroom| %>
+      <%= chatroom.topic %>
+      <hr>
+    <% end %>
+  <% end %>
+</div>
